@@ -63,8 +63,8 @@ open(OUT, ">$prefix.eval") || die;
 warn "Running position-based evaluaton (hapdip distEval)...\n";
 $cmd = "($root/k8 $root/hapdip.js distEval $opts $ARGV[0] $ARGV[1] > $prefix.de) 2> $prefix.log";
 system($cmd) unless -f "$prefix.de";
-$cmd = "($root/k8 $root/hapdip.js distEval -e $opts $ARGV[0] $ARGV[1] | $root/htsbox bgzip > $prefix.de.bed.gz) 2>> $prefix.log";
-system($cmd) unless -f "$prefix.de.bed.gz";
+$cmd = "($root/k8 $root/hapdip.js distEval -e $opts $ARGV[0] $ARGV[1] | $root/htsbox bgzip > $prefix.de-fnp.bed.gz) 2>> $prefix.log";
+system($cmd) unless -f "$prefix.de-fnp.bed.gz";
 
 open(FH, "$prefix.de") || die;
 while (<FH>) {

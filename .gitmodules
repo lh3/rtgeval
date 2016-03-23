@@ -1,0 +1,9 @@
+[submodule "htsbox"]
+	path = htsbox
+	url = https://github.com/lh3/htsbox.git
+[submodule "bgt"]
+	path = bgt
+	url = https://github.com/lh3/bgt.git
+[submodule "hapdip"]
+	path = hapdip
+	url = https://github.com/lh3/hapdip

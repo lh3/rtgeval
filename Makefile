@@ -1,6 +1,7 @@
 SUBDIRS=htsbox bgt
 
-all:rtgeval.kit/htsbox rtgeval.kit/bgt rtgeval.kit/hapdip.js rtgeval.kit/k8
+all:rtgeval.kit/htsbox rtgeval.kit/bgt rtgeval.kit/hapdip.js rtgeval.kit/k8 \
+	rtgeval.kit/RTG.jar
 
 rtgeval.kit:
 	mkdir -p $@
@@ -27,6 +28,9 @@ rtgeval.kit/hapdip.js:prepare
 
 rtgeval.kit/k8:k8-0.2.2.tar.bz2 rtgeval.kit
 	(cd rtgeval.kit; tar -jxf ../$< k8-`uname -s|tr [A-Z] [a-z]` && mv k8-`uname -s|tr [A-Z] [a-z]` k8)
+
+rtgeval.kit/RTG.jar:prepare
+	cp rtg/RTG.jar rtg/rtg rtg/rtg.cfg rtgeval.kit
 
 clean:clean-recur
 	rm -fr rtgeval.kit

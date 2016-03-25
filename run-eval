@@ -68,6 +68,7 @@ system($cmd) unless -f "$prefix.de-fnp.bed.gz";
 
 open(FH, "$prefix.de") || die;
 while (<FH>) {
+	s/distEval/positional/;
 	print OUT $_;
 }
 close(FH);
@@ -101,18 +102,18 @@ if (defined $opts{s}) {
 	@fn[0..1] = &get_cnt("$prefix.vea/fn.vcf.gz", $root);
 	@fn[2..3] = &get_cnt("$prefix.veg/fn.vcf.gz", $root);
 
-	print OUT "rtgeval-al\tSNP\tTP\t", $tot[0] - $fn[0], "\n";
-	print OUT "rtgeval-al\tSNP\tFN\t", $fn[0], "\n";
-	print OUT "rtgeval-al\tSNP\tFP\t", $fp[0], "\n";
-	print OUT "rtgeval-al\tINDEL\tTP\t", $tot[1] - $fn[1], "\n";
-	print OUT "rtgeval-al\tINDEL\tFN\t", $fn[1], "\n";
-	print OUT "rtgeval-al\tINDEL\tFP\t", $fp[1], "\n";
-	print OUT "rtgeval-gt\tSNP\tTP\t", $tot[0] - $fn[2], "\n";
-	print OUT "rtgeval-gt\tSNP\tFN\t", $fn[2], "\n";
-	print OUT "rtgeval-gt\tSNP\tFP\t", $fp[2], "\n";
-	print OUT "rtgeval-gt\tINDEL\tTP\t", $tot[1] - $fn[3], "\n";
-	print OUT "rtgeval-gt\tINDEL\tFN\t", $fn[3], "\n";
-	print OUT "rtgeval-gt\tINDEL\tFP\t", $fp[3], "\n";
+	print OUT "allelic\tSNP\tTP\t", $tot[0] - $fn[0], "\n";
+	print OUT "allelic\tSNP\tFN\t", $fn[0], "\n";
+	print OUT "allelic\tSNP\tFP\t", $fp[0], "\n";
+	print OUT "allelic\tINDEL\tTP\t", $tot[1] - $fn[1], "\n";
+	print OUT "allelic\tINDEL\tFN\t", $fn[1], "\n";
+	print OUT "allelic\tINDEL\tFP\t", $fp[1], "\n";
+	print OUT "genotypic\tSNP\tTP\t", $tot[0] - $fn[2], "\n";
+	print OUT "genotypic\tSNP\tFN\t", $fn[2], "\n";
+	print OUT "genotypic\tSNP\tFP\t", $fp[2], "\n";
+	print OUT "genotypic\tINDEL\tTP\t", $tot[1] - $fn[3], "\n";
+	print OUT "genotypic\tINDEL\tFN\t", $fn[3], "\n";
+	print OUT "genotypic\tINDEL\tFP\t", $fp[3], "\n";
 }
 
 close(OUT);

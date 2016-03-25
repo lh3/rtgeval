@@ -1,7 +1,7 @@
 ## Getting Started
 
 ```sh
-wget -O- https:// | tar -jxf -
+wget -O- https://github.com/lh3/rtgeval/releases/download/v0.1/rtgevalkit-0.1_x64-linux.tar.bz2 | tar -jxf -
 [ -d ref.sdf ] || rtgeval.kit/rtg format -o ref.sdf ref.fa  # create RTG index
 rtgeval.kit/run-eval -s ref.sdf -b confident.bed truth.vcf.gz test.vcf.gz
 cat test.re.eval

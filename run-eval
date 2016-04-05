@@ -96,11 +96,11 @@ if (defined $opts{s}) {
 	$cmd = "($root/rtg vcfeval -t $opts{s} -b $prefix.truth.vcf.gz -c $prefix.test.vcf.gz -o $prefix.veg) 2>> $prefix.log";
 	system($cmd) unless -d "$prefix.veg";
 
-	@tot = &get_cnt("$prefix.truth.vcf.gz", $root);
-	@fp[0..1] = &get_cnt("$prefix.vea/fp.vcf.gz", $root);
-	@fp[2..3] = &get_cnt("$prefix.veg/fp.vcf.gz", $root);
-	@fn[0..1] = &get_cnt("$prefix.vea/fn.vcf.gz", $root);
-	@fn[2..3] = &get_cnt("$prefix.veg/fn.vcf.gz", $root);
+	@tot =      &get_cnt_mix("$prefix.truth.vcf.gz", $root);
+	@fp[0..1] = &get_cnt_mix("$prefix.vea/fp.vcf.gz", $root);
+	@fp[2..3] = &get_cnt_mix("$prefix.veg/fp.vcf.gz", $root);
+	@fn[0..1] = &get_cnt_mix("$prefix.vea/fn.vcf.gz", $root);
+	@fn[2..3] = &get_cnt_mix("$prefix.veg/fn.vcf.gz", $root);
 
 	print OUT "allelic\tSNP\tTP\t", $tot[0] - $fn[0], "\n";
 	print OUT "allelic\tSNP\tFN\t", $fn[0], "\n";
@@ -169,4 +169,30 @@ sub get_cnt {
 	}
 	close(FH);
 	return ($sub, $gap);
+}
+
+sub get_cnt_mix {
+	my $fn = shift;
+	my $root = shift;
+	my ($n_snp, $n_indel, $n_mix) = (0, 0, 0);
+	open(FH, $fn =~ /\.gz$/? "gzip -dc $fn |" : $fn) || die;
+	while (<FH>) {
+		next if /^#/;
+		chomp;
+		my @t = split("\t");
+		my ($is_snp, $is_indel) = (0, 0);
+		my @s = split(",", $t[4]);
+		for my $a (@s) {
+			if (length($t[3]) == length($a)) {
+				$is_snp = 1;
+			} else {
+				$is_indel = 1;
+			}
+		}
+		++$n_snp if $is_snp;
+		++$n_indel if $is_indel;
+		++$n_mix if $is_snp && $is_indel;
+	}
+	close(FH);
+	return ($n_snp, $n_indel);
 }

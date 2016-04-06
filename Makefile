@@ -1,7 +1,7 @@
 SUBDIRS=htsbox bgt
 
 all:rtgeval.kit/htsbox rtgeval.kit/bgt rtgeval.kit/hapdip.js rtgeval.kit/k8 \
-	rtgeval.kit/RTG.jar rtgeval.kit/run-rtgeval rtgeval.kit/run-flt \
+	rtgeval.kit/RTG.jar rtgeval.kit/run-eval rtgeval.kit/run-flt \
 	rtgeval.kit/RTG-LICENSE.txt
 
 rtgeval.kit:
@@ -33,8 +33,8 @@ rtgeval.kit/k8:k8-0.2.2.tar.bz2 rtgeval.kit
 rtgeval.kit/RTG.jar:prepare
 	cp rtg/RTG.jar rtg/rtg rtg/rtg.cfg rtgeval.kit
 
-rtgeval.kit/run-rtgeval:prepare
-	cp run-rtgeval $@
+rtgeval.kit/run-eval:prepare
+	cp run-eval $@
 
 rtgeval.kit/run-flt:prepare
 	cp run-flt $@

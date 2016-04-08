@@ -117,19 +117,19 @@ if (defined $opts{s}) {
 	print OUT "allelic\tSNP\tFN\t$a_fn[0]\n";
 	print OUT "allelic\tSNP\tFP\t$a_fp[0]\n";
 	print OUT "allelic\tSNP\t%FNR\t", sprintf("%.2f", 100 * $a_fn[0] / ($a_fn[0] + $a_tp0[0])), "\n";
-	print OUT "allelic\tSNP\t%FPR\t", sprintf("%.2f", 100 * $a_fp[0] / ($a_fp[0] + $a_tp1[0])), "\n";
+	print OUT "allelic\tSNP\t%FDR\t", sprintf("%.2f", 100 * $a_fp[0] / ($a_fp[0] + $a_tp1[0])), "\n";
 	print OUT "allelic\tINDEL\tFN\t$a_fn[1]\n";
 	print OUT "allelic\tINDEL\tFP\t$a_fp[1]\n";
 	print OUT "allelic\tINDEL\t%FNR\t", sprintf("%.2f", 100 * $a_fn[1] / ($a_fn[1] + $a_tp0[1])), "\n";
-	print OUT "allelic\tINDEL\t%FPR\t", sprintf("%.2f", 100 * $a_fp[1] / ($a_fp[1] + $a_tp1[1])), "\n";
+	print OUT "allelic\tINDEL\t%FDR\t", sprintf("%.2f", 100 * $a_fp[1] / ($a_fp[1] + $a_tp1[1])), "\n";
 	print OUT "genotypic\tSNP\tFN\t$g_fn[0]\n";
 	print OUT "genotypic\tSNP\tFP\t$g_fp[0]\n";
 	print OUT "genotypic\tSNP\t%FNR\t", sprintf("%.2f", 100 * $g_fn[0] / ($g_fn[0] + $g_tp0[0])), "\n";
-	print OUT "genotypic\tSNP\t%FPR\t", sprintf("%.2f", 100 * $g_fp[0] / ($g_fp[0] + $g_tp1[0])), "\n";
+	print OUT "genotypic\tSNP\t%FDR\t", sprintf("%.2f", 100 * $g_fp[0] / ($g_fp[0] + $g_tp1[0])), "\n";
 	print OUT "genotypic\tINDEL\tFN\t$g_fn[1]\n";
 	print OUT "genotypic\tINDEL\tFP\t$g_fp[1]\n";
 	print OUT "genotypic\tINDEL\t%FNR\t", sprintf("%.2f", 100 * $g_fn[1] / ($g_fn[1] + $g_tp0[1])), "\n";
-	print OUT "genotypic\tINDEL\t%FPR\t", sprintf("%.2f", 100 * $g_fp[1] / ($g_fp[1] + $g_tp1[1])), "\n";
+	print OUT "genotypic\tINDEL\t%FDR\t", sprintf("%.2f", 100 * $g_fp[1] / ($g_fp[1] + $g_tp1[1])), "\n";
 }
 close(OUT);
 
